@@ -23,7 +23,7 @@ $offset=0;
 if(isset($_GET["page"]))
 	$current_page=$_GET["page"];
 else
-	$current_page=0;
+	$current_page=1;
 
 if($current_page!=0 && $current_page!=1)
 	$offset=$per_page*($current_page-1);
@@ -35,7 +35,7 @@ $count=0;
 for($i=$offset;$i<$total_data;$i++)
 {
 	if($count==$per_page)
-		return;
+		break;
 	echo "<br/>".$arr[$i]["name"];
 	$count++;
 	
@@ -43,6 +43,22 @@ for($i=$offset;$i<$total_data;$i++)
 
 $vue=array();
 
+
+
+
 $vue["current_page"]=$current_page;
 $vue["last_page"]=$page_numbers;
+
+$vue["previous_page_url"]=$current_page-1;
+ $vue["next_page_url"]=$current_page+1;
  
+ if($current_page==1 || $current_page==null || $current_page==0)
+ 	$vue["previous_page_url"]=null;
+
+ if($current_page==$page_numbers)
+ 	$vue["next_page_url"]=null;
+
+
+
+echo "<br/><pre>";
+echo json_encode($vue);
