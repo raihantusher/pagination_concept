@@ -41,4 +41,8 @@ for($i=$offset;$i<$total_data;$i++)
 	
 }
 
+$vue=array();
 
+$vue["current_page"]=$current_page;
+$vue["last_page"]=$page_numbers;
+ 
